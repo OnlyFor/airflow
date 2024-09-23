@@ -59,8 +59,11 @@ services:
         source: ../../../RELEASE_NOTES.rst
         target: /opt/airflow/RELEASE_NOTES.rst
       - type: bind
-        source: ../../../airflow
-        target: /opt/airflow/airflow
+        source: ../../../core
+        target: /opt/airflow/core
+      - type: bind
+        source: ../../../providers
+        target: /opt/airflow/providers
       - type: bind
         source: ../../../constraints
         target: /opt/airflow/constraints
@@ -94,9 +97,6 @@ services:
       - type: bind
         source: ../../../scripts/docker/entrypoint_ci.sh
         target: /entrypoint
-      - type: bind
-        source: ../../../tests
-        target: /opt/airflow/tests
       - type: bind
         source: ../../../helm_tests
         target: /opt/airflow/helm_tests

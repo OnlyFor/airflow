@@ -1,0 +1,68 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "providers"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.8, <3.13"
+classifiers = [
+    "Private :: Do Not Upload",
+]
+dependencies = [
+]
+
+[tool.hatch.publish.index]
+# Lets make doubly sure this never goes to PyPi
+disable = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/airflow"]
+exclude = [
+  ".gitignore",
+  ".latest-doc-only-change.txt",
+  "CHANGELOG.rst",
+  "MANAGING_PROVIDERS_LIFECYCLE.rst",
+]
+
+[tool.ruff]
+extend = "../pyproject.toml"
+src = ["src"]
+namespace-packages = ["src/airflow/providers"]
+
+[tool.ruff.lint.per-file-ignores]
+# All of the modules which have an extra license header (i.e. that we copy from another project) need to
+# ignore E402 -- module level import not at top level
+"tests/amazon/aws/auth_manager/security_manager/test_aws_security_manager_override.py" = ["E402"]
+"tests/common/io/xcom/test_backend.py" = ["E402"]
+"tests/elasticsearch/log/elasticmock/__init__.py" = ["E402"]
+"tests/elasticsearch/log/elasticmock/utilities/__init__.py" = ["E402"]
+"tests/google/cloud/hooks/vertex_ai/test_batch_prediction_job.py" = ["E402"]
+"tests/google/cloud/hooks/vertex_ai/test_hyperparameter_tuning_job.py" = ["E402"]
+"tests/google/cloud/hooks/vertex_ai/test_auto_ml.py" = ["E402"]
+"tests/google/cloud/hooks/vertex_ai/test_custom_job.py" = ["E402"]
+"tests/google/cloud/hooks/vertex_ai/test_dataset.py" = ["E402"]
+"tests/google/cloud/hooks/vertex_ai/test_endpoint_service.py" = ["E402"]
+"tests/google/cloud/hooks/vertex_ai/test_generative_model.py" = ["E402"]
+"tests/google/cloud/hooks/vertex_ai/test_model_service.py" = ["E402"]
+"tests/google/cloud/hooks/vertex_ai/test_pipeline_job.py" = ["E402"]
+"tests/google/cloud/hooks/vertex_ai/test_prediction_service.py" = ["E402"]
+"tests/google/cloud/links/test_translate.py" = ["E402"]
+"tests/google/cloud/operators/test_automl.py"= ["E402"]
+"tests/google/cloud/operators/test_vertex_ai.py" = ["E402"]
+"tests/google/cloud/operators/vertex_ai/test_generative_model.py" = ["E402"]
+"tests/google/cloud/triggers/test_vertex_ai.py" = ["E402"]
+"tests/openai/hooks/test_openai.py" = ["E402"]
+"tests/openai/operators/test_openai.py" = ["E402"]
+"tests/openai/triggers/test_openai.py" = ["E402"]
+"tests/opensearch/conftest.py" = ["E402"]
+"tests/opensearch/hooks/test_opensearch.py" = ["E402"]
+"tests/opensearch/operators/test_opensearch.py" = ["E402"]
+"tests/qdrant/hooks/test_qdrant.py" = ["E402"]
+"tests/qdrant/operators/test_qdrant.py" = ["E402"]
+"tests/snowflake/operators/test_snowflake_sql.py" = ["E402"]
+"tests/yandex/**/*.py" = ["E402"]
+
+# https://github.com/apache/airflow/issues/39252
+"airflow/providers/amazon/aws/hooks/eks.py" = ["W605"]

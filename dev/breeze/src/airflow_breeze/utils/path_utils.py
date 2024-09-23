@@ -42,14 +42,13 @@ def search_upwards_for_airflow_sources_root(start_from: Path) -> Path | None:
     root = Path(start_from.root)
     d = start_from
     while d != root:
-        airflow_candidate = d / "airflow"
-        airflow_candidate_init_py = airflow_candidate / "__init__.py"
+        airflow_candidate_init_py = d / "core" / "src" / "airflow" / "__init__.py"
         if (
-            airflow_candidate.is_dir()
+            d.is_dir()
             and airflow_candidate_init_py.is_file()
             and "airflow" in airflow_candidate_init_py.read_text().lower()
         ):
-            return airflow_candidate.parent
+            return d
         d = d.parent
     return None
 

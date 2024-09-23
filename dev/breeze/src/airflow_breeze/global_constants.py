@@ -396,7 +396,7 @@ COMMITTERS = [
 
 
 def get_airflow_version():
-    airflow_init_py_file = AIRFLOW_SOURCES_ROOT / "airflow" / "__init__.py"
+    airflow_init_py_file = AIRFLOW_SOURCES_ROOT / "core"/ "src" / "airflow" / "__init__.py"
     airflow_version = "unknown"
     with open(airflow_init_py_file) as init_file:
         while line := init_file.readline():
@@ -419,8 +419,8 @@ def get_airflow_extras():
 
 
 # Initialize integrations
-ALL_PROVIDER_YAML_FILES = Path(AIRFLOW_SOURCES_ROOT, "airflow", "providers").rglob("provider.yaml")
-PROVIDER_RUNTIME_DATA_SCHEMA_PATH = AIRFLOW_SOURCES_ROOT / "airflow" / "provider_info.schema.json"
+ALL_PROVIDER_YAML_FILES = Path(AIRFLOW_SOURCES_ROOT, "providers", "src", "airflow", "providers").rglob("provider.yaml")
+PROVIDER_RUNTIME_DATA_SCHEMA_PATH = AIRFLOW_SOURCES_ROOT / "core" / "src"/ "airflow" / "provider_info.schema.json"
 
 with Path(AIRFLOW_SOURCES_ROOT, "generated", "provider_dependencies.json").open() as f:
     PROVIDER_DEPENDENCIES = json.load(f)
