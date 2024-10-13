@@ -97,19 +97,18 @@ from tests.plugins.priority_weight_strategy import (
     StaticTestPriorityWeightStrategy,
     TestPriorityWeightStrategyPlugin,
 )
-
-from dev.tests_common.test_utils.asserts import assert_queries_count
-from dev.tests_common.test_utils.compat import AIRFLOW_V_3_0_PLUS
-from dev.tests_common.test_utils.config import conf_vars
-from dev.tests_common.test_utils.db import (
+from tests_common.test_utils.asserts import assert_queries_count
+from tests_common.test_utils.compat import AIRFLOW_V_3_0_PLUS
+from tests_common.test_utils.config import conf_vars
+from tests_common.test_utils.db import (
     clear_db_assets,
     clear_db_dags,
     clear_db_runs,
     clear_db_serialized_dags,
 )
-from dev.tests_common.test_utils.mapping import expand_mapped_task
-from dev.tests_common.test_utils.mock_plugins import mock_plugin_manager
-from dev.tests_common.test_utils.timetables import cron_timetable, delta_timetable
+from tests_common.test_utils.mapping import expand_mapped_task
+from tests_common.test_utils.mock_plugins import mock_plugin_manager
+from tests_common.test_utils.timetables import cron_timetable, delta_timetable
 
 if AIRFLOW_V_3_0_PLUS:
     from airflow.utils.types import DagRunTriggeredByType
