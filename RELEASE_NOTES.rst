@@ -21,6 +21,55 @@
 
 .. towncrier release notes start
 
+Airflow 2.10.3 (2024-10-23)
+---------------------------
+
+Significant Changes
+^^^^^^^^^^^^^^^^^^^
+
+- Add ``run_with_db_retries`` when the scheduler updates the deferred Task as failed to tolerate database deadlock issues. (#41429)
+
+Bug Fixes
+"""""""""
+- Better handling masking of values of set variable  (#43123) (#43278)
+- Added task_instance_mutation_hook for mapped operator index 0 (#42661) (#43089)
+- Remove zombie from executor (#43065)
+- Add retry on error 502 and 504 (#42994) (#43044)
+- Flush the session between writing and deletion of RTIF (#42928) (#43012)
+- Fix PythonOperator when DAG has hyphen in name (#42993)
+- Improving validation of task retries to handle None values (#42532) (#42915)
+- Fix dag warning documentation (#42858) (#42888)
+- Fix error handling file loc when dataset alias resolved into new datasets (#42733)
+- Correctly select task in DAG Graph View when clicking on its name (#38782) (#42697)
+- Prevent redirect loop on /home with tags/lastrun filters (#42607) (#42609) (#42628)
+- Support of host.name in OTEL metrics and usage of OTEL_RESOURCE_ATTRIBUTES in metrics (#42428) (#42604)
+- Reduce eyestrain in dark mode with reduced contrast and saturation (#42567) (#42583)
+- Handle ENTER key correctly in trigger form and allow manual JSON (#42525) (#42535)
+- Ensure DAG trigger form submits with updated parameters upon keyboard submit (#42487) (#42499)
+- Do not attempt to provide not ``stringified`` objects to UI via xcom if pickling is active (#42388) (#42486)
+- Fix the span link of task instance to point to the correct span in the scheduler_job_loop (#42430) (#42480)
+- Bugfix task execution from runner in Windows (#42426) (#42478)
+- Apply otel_service on metrics (#42242) (#42441)
+- Use ``selectinload`` in trigger (#40487) (#42351)
+
+Miscellaneous
+"""""""""""""
+- Temporarily limits WTForms to below 3.2.0 (#43233) (#43234)
+- Fix v2-10 build dependencies (#43052)
+- Deprecate session auth backend (#42911)
+- Removed unicodecsv dependency for providers with Airflow version 2.8.0 and above (#42765) (#42970)
+- Remove the referrer from Webserver to Scarf (#42901) (#42942)
+- Bump ``dompurify`` from 2.2.9 to 2.5.6 in /airflow/www (#42263) (#42270)
+- Correct docstring format in _get_template_context (#42244) (#42272)
+
+Doc Only Changes
+""""""""""""""""
+- Clarifying PLUGINS_FOLDER permissions by DAG authors (#43022) (#43029)
+- Add templating info to TaskFlow tutorial (#42992)
+- Airflow local settings no longer importable from dags folder (#42231) (#42603)
+- Fix documentation for cpu and memory usage (#42147) (#42256)
+
+
 Airflow 2.10.2 (2024-09-18)
 ---------------------------
 
